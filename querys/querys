@@ -1,0 +1,46 @@
+
+---descarga todos los nodos que se encuntran en highways
+
+<bbox-query s=" 33.327" n="33.562" w=" -82.491" e=" -81.587"/>
+<query type="node">
+  <newer than="2013-11-27T15:33:24Z"/>  
+  <user name="ediyes"/>
+  <has-kv k="highway" /> 
+</query>
+<print mode="meta"/>
+
+---descarga todos lo nodos
+
+<bbox-query s=" 33.327" n="33.562" w=" -82.491" e=" -81.587"/>
+<query type="node">
+  <newer than="2013-11-27T15:33:24Z"/>  
+  <user name="ediyes"/>
+ 
+</query>
+<print mode="meta"/>
+
+
+---para descargara way-highways
+
+<bbox-query s=" 41.554" n="41.621" w=" -83.833" e=" -83.386"/>
+<recurse type="node-way"/>
+<query type="way">
+  <item/>
+      <newer than="2013-04-26T00:00:00Z"/>  
+      <user name="Rub21"/> 
+  <has-kv k="highway" />
+
+</query>
+<union>
+  <item/>
+  <recurse type="down"/></union><print mode="meta"/> 
+
+  ----descarga way de una edificio
+  <bbox-query s=" 40.579" n="40.580" w=" -73.947" e=" -73.940"/> <recurse type="node-way"/>
+<query type="way">
+  <item/>
+  <newer than="2013-11-26T00:00:00Z"/>
+<user name="Rub21_nycbuildings"/>
+    <has-kv k="building" v="yes"/>
+</query>
+<union><item/><recurse type="down"/></union><print mode="meta"/> 

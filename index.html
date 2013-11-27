@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Dowland OSM Data</title>
+
+        <link type='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.css' />
+        <link type='text/css' rel="stylesheet" href="css/bootstrap.css" >
+            <link  type='text/css' href='css/style.css' rel='stylesheet' />
+ 
+            <link href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        </head>
+
+
+
+        <body>
+            
+            <div id="map" class="loading">
+            </div>
+            <!-- <a href='#' id='geolocate'>&nbsp</a>-->
+            <div class="inf_sidebar"><a href="#">&nbsp</a></div>
+            <div class="sidebar">
+                <div class="hide_sidebar"><a href="#">&nbsp</a></div>
+                <h4>Downland OSM Data</h4>
+                <div class="content">
+                    
+                    <h5>Date:</h5>
+                    <div class="row-fluid" id="select-date">
+                        <div class="span1"><input type="radio" name="date" value="spec-date" id="spec-date" checked></div>
+                        <div class="span5"><label for="spec-date"> Spec date </label></div>
+                        <div class="span1"><input type="radio" name="date" value="all-date" id="all-date"></div>
+                        <div class="span5"><label for="all-date"> All date</label></div>
+                        
+                    </div>
+                    <div class="row-fluid set-spec-date">
+                        <div class="span2">
+                            From :
+                        </div>
+                        <div class="span10">
+                            <div id="datetimepicker" class="input-append">
+                                <input  class="imput-data" data-format="MM/dd/yyyy HH:mm:ss PP" type="text" placeholder='Date at:' id="imput_date"></input>
+                                <span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="content">
+                    <h5>User:</h5>
+                    <div class="row-fluid" id="select-user">
+                        <div class="span1"><input type="radio" name="user" value="spec-user" id="spec-user" checked></div>
+                        <div class="span5"><label for="spec-user"> Spec user </label></div>
+                        <div class="span1"><input type="radio" name="user" value="all-user" id="all-user"></div>
+                        <div class="span5"><label for="all-user"> All user</label></div>
+                        
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span2">User :</div>
+                        <div class="span10"><input id= "imput_user" type="text"></input></div>
+                    </div>
+                </div>
+
+
+                
+                <div class="content opciones-check">
+                    <div class="well">
+                        <div class="well">
+                            <h5>Nodes</h5>
+                            
+                            <!--<div class="row-fluid">
+                                <div class="span1"><input type="radio" name="tipo" value="node-high" id="node-high" disabled=true></div>
+                                <div class="span11"><label for="node-high">Nodes from highways</label></div>
+                            </div>-->
+                            <div class="row-fluid">
+                                <div class="span1"><input type="radio" name="tipo" value="all-node" id="all-node"></div>
+                                <div class="span11"><label for="all-node"> All nodes</label></div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="well">
+                            <h5>Ways</h5>
+                            <div class="row-fluid">
+                                <div class="span1"><input type="radio" name="tipo" value="highway" id="highway"></div>
+                                <div class="span11"><label for="highway">highway</label></div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span1"><input type="radio" name="tipo" value="buildings" id="buildings"></div>
+                                <div class="span11"><label for="buildings">buildings</label></div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span1"><input type="radio" name="tipo" value="all-ways" id="all-ways"></div>
+                                <div class="span11"><label for="all-ways">all ways</label></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="josm">Dowland in JOSM</button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="json">Dowland in JSON</button>
+                
+            </div>
+        </div>
+        
+        
+        <!--Librerias-->
+        <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.js'></script>
+        <script   src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script   src="js/bootstrap.js"></script>
+
+        <script   src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
+        <script  src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>
+
+        <script   src="js/app.js"></script>
+        
+    </body>
+</html></p>
