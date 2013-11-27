@@ -2,34 +2,22 @@ body {
     background-color: #fff;
     font: 12px  sans-serif;
     margin: 0;
-    padding: 0; 
+    padding: 0;
 }
 
-a {
-    /*color: #fff;*/
-    text-decoration: none;
-}
+a { text-decoration: none; }
 
 /******************************************
 Map
 ******************************************/
 
 #map {
-  background-color: #080d12;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  width: 100%;
+    background-color: #080d12;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    width: 100%;
 }
-
-#map .leaflet-left .leaflet-control{
-    top: 2px;   
-    margin-left: 340px;
-
-}
-
-
-
 
 
 
@@ -39,30 +27,30 @@ loading gif
 
 .loading:after {
     background: url(../img/ajax-loader.gif) no-repeat;
-    content: "Cargando...";
     color: #666;
-    left: 50%;  
-    height: 16px;
-    line-height: 16px;
-    margin-top: -8px;
-    margin-left: -40px;
-    position: absolute;
+    content: "Cargando...";
     font-size: 12px;
-    top: 50%; 
+    height: 16px;
+    left: 50%;
+    line-height: 16px;
+    margin-left: -40px;
+    margin-top: -8px;
+    position: absolute;
     text-indent: 26px;
+    top: 50%;
     width: 80px;
 }
 
 #map.loading:after {
-    background-color: #333;
     background-color: rgba(0,0,0,0.75);
+    background-color: #333;
     background-image: url(../img/ajax-loader-rev.gif);
-    color: #fff;
-    padding: 20px;
     background-position: 20px 50%;
     border-radius: 10px;
-    z-index: 4;
+    color: #fff;
+    padding: 20px;
     position: absolute;
+    z-index: 4;
 }
 
 
@@ -71,32 +59,24 @@ loading gif
 /**********************
 sidebar
 ***********************/
-.sidebar{
-    background: none repeat scroll 0 0 rgba(13, 13, 13, 0.898);      
-    position: absolute;
-    top: 5px;   
-    float: left;
-    height: 100%;  
-    width: 300px;   
-    z-index: 12; 
-    color: #fff;
-    left: 10px;
-    padding: 10px;
-
+.sidebar {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
+    background: none repeat scroll 0 0 rgba(13, 13, 13, 0.898);
     border-radius: 5px;
+    color: #fff;
+    float: left;
+    height: 100%;
+    left: 10px;
+    padding: 10px;
+    position: absolute;
+    top: 5px;
+    width: 300px;
+    z-index: 12;
 }
 
-.sidebar .content-search{
-    width: 100%;
-    text-align: center;
-
-}
-.sidebar .search input{   
-    margin-bottom:0px;
-    height: 18px;
-}
+.sidebar .content-search { text-align: center; width: 100%; }
+.sidebar .search input { height: 18px; margin-bottom: 0px; }
 
 .alert {
     background-color: #FCF8E3;
@@ -110,135 +90,30 @@ sidebar
 
 
 
-/******************************************
-footer
-******************************************/
-/*
-.popup {
-    text-align: center;
-}
-.popup .slideshow {
-    width: 100%;
-}
-.popup .slideshow .image {
-    display: none;
-}
-.popup .slideshow .active {
-    display: block;
-}
-.popup .slideshow img {
-    width: 100%;
-}
-.popup .slideshow .caption {
-    background: #eee;
-    padding: 8px;
-}
-.popup .cycle {
-    height: 30px;
-    margin-top: 5px;
-    padding-top: 5px;
-}
-.popup .cycle a.prev {
-    float: left;
-}
-.popup .cycle a.next {
-    float: right;
-    margin-right: 200px;
-}
-
-.btn-detail{
-    position: absolute;
-    bottom: 35px;
-    right: 15px;
-}
-
-.leaflet-container .btn-detail a{
-    color: #FFF;
-}
-
-*/
-
-
-
-
-
-/*****************
-HIDE SIDEBAR
-********************/
-
-.hide_sidebar{
-    position: absolute;    
-    width: 25px;
-    height: 25px;
-    top: 1px;
-    right: 5px;
-    border: none;
-    background: transparent url(../img/arrow.png) no-repeat 0px 7px;  
-    display: block;
-    cursor: pointer;
-
-}
-.hide_sidebar a{
-    color: #fff;
-    text-decoration: none;
-}
-
-.inf_sidebar{
-    display: none;
-    background: url(../img/arrow.png) no-repeat -83px 9px rgba(13, 13, 13, 0.898);    
-    position: absolute;
-    top: 65px;   
-    float: left;
-    height: 28px;  
-    width: 28px;   
-    z-index: 12; 
-    left: 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 #geolocate {
-    /*background: none repeat scroll 0 0 rgba(13, 13, 13, 0.898);   */
-    display: block;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(../img/e2e.png);
+    -webkit-border-radius: 5px;
     background-color: #F8F8F9;
-    position: absolute;
-    top: 70px;
-    right: 9px;
-    width: 36px;
-    height: 36px;
-  
-    z-index: 1000;  
-    text-align: center;
-    /* padding: 10px 0;*/
+    background-image: url(../img/e2e.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #BBB;
+    border-radius: 5px;
     color: #fff;
     display: block;
-    border: 1px solid #BBB;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    display: block;
+    height: 36px;
+    position: absolute;
+    right: 9px;
+    text-align: center;
+    top: 70px;
+    width: 36px;
+    z-index: 1000;
+
 }
 
 
-/*Layers*/
-.leaflet-top .leaflet-control{
-    top: 50px;
-    /*right: 0px;*/
-}
+.opciones-check { color: #333; }
 
+.imput-data { width: 180px; }
 
-
-.opciones-check{
-    color: #333;
-}
-
-.imput-data{
-    width: 180px;
-}
-
-  input, label {
-    line-height: 1.5em;
-  }
+input, label { line-height: 1.5em; }

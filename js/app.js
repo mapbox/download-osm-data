@@ -4,11 +4,9 @@
     /*******************************capa de Mapbox******************/
 
     /* map.addLayer(mapbox.layer().id('ruben.map-hly0tebv'));
-     
-     
+         
      */
     /*******************************capa de osm******************/
-
 
     var layer_osm = new MM.Layer(new MM.MapProvider(function(coord) {
         var img = parseInt(coord.zoom) + '/' + parseInt(coord.column) + '/' + parseInt(coord.row) + '.png';
@@ -19,7 +17,7 @@
 
 
     map.addLayer(layer_osm);
-    // map.addLayer(mapbox.layer().id('ruben.us-over'));
+  //  map.addLayer(mapbox.layer().id('ruben.us-over'));
 
     map.setZoomRange(3, 18);
     map.centerzoom({
@@ -75,91 +73,101 @@
 
             //MAP
             var mapzoom = map.getZoom();
-            var locations = (map.getExtent() + '').split(',');
+
+            if (mapzoom >= 7) {
 
 
 
-            //FECHA
-            var date_hour = $('#datetimepicker input').attr('value');
-            var date = date_hour.substring(0, 10).split("/");
-            var hour = date_hour.substring(11, 19).split(":");
-            //11/27/2013 09:52:52
-            //2013-04-24T13:00:00Z
-            var newer = date[2] + "-" + date[0] + "-" + date[1] + "T" + date_hour.substring(11, 19) + "Z";
+                var locations = (map.getExtent() + '').split(',');
 
 
 
-            console.log($('input:radio[name=user]:checked').val());
+                //FECHA
+                var date_hour = $('#datetimepicker input').attr('value');
+                var date = date_hour.substring(0, 10).split("/");
+                var hour = date_hour.substring(11, 19).split(":");
+                //11/27/2013 09:52:52
+                //2013-04-24T13:00:00Z
+                var newer = date[2] + "-" + date[0] + "-" + date[1] + "T" + date_hour.substring(11, 19) + "Z";
 
-            if ($('input:radio[name=date]:checked').val() == "spec-date") {
 
-                newer = '<newer than="' + newer + '"/> ';
+
+                console.log($('input:radio[name=user]:checked').val());
+
+                if ($('input:radio[name=date]:checked').val() == "spec-date") {
+
+                    newer = '<newer than="' + newer + '"/> ';
+                } else {
+
+                    newer = '';
+                }
+
+
+
+                //USER
+                var user = $('#imput_user').val();
+
+
+                console.log($('input:radio[name=user]:checked').val());
+
+                if ($('input:radio[name=user]:checked').val() == "spec-user") {
+
+                    user = '<user name="' + user + '"/> ';
+                } else {
+
+                    user = '';
+                }
+
+
+
+                //Tipo
+                var tipo = $('input:radio[name=tipo]:checked').val();
+
+                //alert(tipo);
+
+                var way_type = "";
+
+                var from_type = "";
+
+                console.log(user);
+                console.log(newer);
+                console.log(tipo);
+
+                if (tipo == 'highway') {
+
+                    way_type = '<has-kv k="highway" />';
+                    download_ways(locations, newer, user, way_type);
+
+                } else if (tipo == 'buildings') {
+
+                    way_type = '<has-kv k="building" v="yes"/>';
+                    download_ways(locations, newer, user, way_type);
+
+
+                } else if (tipo == 'all-ways') {
+                    way_type = '';
+                    download_ways(locations, newer, user, way_type);
+
+                } else if (tipo == 'node-high') {
+                    from_type = '  <has-kv k="highway" /> ';
+
+                    download_nodes(locations, newer, user, from_type);
+
+                } else if (tipo == 'all-node') {
+
+                    from_type = '';
+
+                    download_nodes(locations, newer, user, from_type);
+
+
+
+                }
+
+
+
             } else {
-
-                newer = '';
+                alert("zoom in a little so we don't have to load a huge area from the API.")
             }
-
-
-
-            //USER
-            var user = $('#imput_user').val();
-
-
-            console.log($('input:radio[name=user]:checked').val());
-
-            if ($('input:radio[name=user]:checked').val() == "spec-user") {
-
-                user = '<user name="' + user + '"/> ';
-            } else {
-
-                user = '';
-            }
-
-
-
-            //Tipo
-            var tipo = $('input:radio[name=tipo]:checked').val();
-
-            //alert(tipo);
-
-            var way_type = "";
-
-            var from_type = "";
-
-            console.log(user);
-            console.log(newer);
-            console.log(tipo);
-
-            if (tipo == 'highway') {
-
-                way_type = '<has-kv k="highway" />';
-                download_ways(locations, newer, user, way_type);
-
-            } else if (tipo == 'buildings') {
-
-                way_type = '<has-kv k="building" v="yes"/>';
-                download_ways(locations, newer, user, way_type);
-
-
-            } else if (tipo == 'all-ways') {
-                way_type = '';
-                download_ways(locations, newer, user, way_type);
-
-            } else if (tipo == 'node-high') {
-                from_type = '  <has-kv k="highway" /> ';
-
-                download_nodes(locations, newer, user, from_type);
-
-            } else if (tipo == 'all-node') {
-
-                from_type = '';
-
-                download_nodes(locations, newer, user, from_type);
-
-
-
-            }
-
 
         });
 
@@ -213,9 +221,9 @@
         };
 
 
- $('#json').click(function() {
-    alert('aun no esta implementado')
- });
+        $('#json').click(function() {
+            alert('aun no esta implementado')
+        });
 
         $('#jsonn').click(function() {
 
