@@ -213,10 +213,13 @@
         };
 
 
+ $('#json').click(function() {
+    alert('aun no esta implementado')
+ });
 
-        $('#json').click(function() {
+        $('#jsonn').click(function() {
+
             var mapzoom = map.getZoom();
-
             var locations = (map.getExtent() + '').split(','); //date 
             var date_hour = $('#datetimepicker input').attr('value');
             var date = date_hour.substring(0, 10).split("/");
