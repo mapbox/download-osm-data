@@ -17,7 +17,7 @@
 
 
     map.addLayer(layer_osm);
-  //  map.addLayer(mapbox.layer().id('ruben.us-over'));
+    //map.addLayer(mapbox.layer().id('ruben.us-over'));
 
     map.setZoomRange(3, 18);
     map.centerzoom({
@@ -74,7 +74,7 @@
             //MAP
             var mapzoom = map.getZoom();
 
-            if (mapzoom >= 7) {
+            if (mapzoom >= 6) {
 
 
 
@@ -221,73 +221,59 @@
         };
 
 
+
         $('#json').click(function() {
-            alert('aun no esta implementado')
-        });
 
-        $('#jsonn').click(function() {
 
-            var mapzoom = map.getZoom();
-            var locations = (map.getExtent() + '').split(','); //date 
+            $('#btn-full-with').trigger('click');
+
+            //FECHA
             var date_hour = $('#datetimepicker input').attr('value');
             var date = date_hour.substring(0, 10).split("/");
             var hour = date_hour.substring(11, 19).split(":");
+            var newer = date[2] + "-" + date[0] + "-" + date[1] + "T" + date_hour.substring(11, 19) + "Z";
 
-            if (mapzoom >= 7) {
+            //console.log(newer);
+            var user = $('#imput_user').val();
+            //console.log(user)
+            var locations = (map.getExtent() + '').split(',');
+            //console.log(locations[2] + ',' + locations[1] + ',' + locations[0] + ',' + locations[3]);
+            var query = '[out:json];node(newer:"' + newer + '")(user:"' + user + '")(' + locations[2] + ',' + locations[1] + ',' + locations[0] + ',' + locations[3] + ');out meta;';
 
-                $('#map').addClass('loading');
+            // console.log(query);
 
+            var url = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=' + query;
+            console.log(url)
+            $.getJSON(url, {
+                format: "json"
+            }).done(function(data) {
+                /*console.log(data);
+                console.log(data.elements);*/
+                var geojson = {
+                    "type": "FeatureCollection",
+                    "features": []
+                };
+                $.each(data.elements, function(i, item) {
+                    // console.log(item)
+                    var d = {
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [item.lon, item.lat]
+                        },
+                        "type": "Feature",
+                        "properties": {
 
-                var query = '[out:json];node(newer:"2013-04-24T13:00:00Z")( 28.745, -84.707,29.691, -72.204);out meta;';
-                var url = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=' + query;
-                //console.log(url);
-                $.getJSON(url, {
-                    format: "json"
-                }).done(function(data) {
-                    //console.log(data);
-                    //console.log(data.elements);
-
-                    var geojson = {
-                        "type": "FeatureCollection",
-                        "features": []
+                            "timestamp": moment(item.timestamp.replace('T', ' ').replace('Z', '')).unix(),
+                            "version": item.version,
+                            "user": item.user
+                        }
                     };
-
-
-
-                    $.each(data.elements, function(i, item) {
-                        // console.log(item)
-                        var d = {
-                            "geometry": {
-                                "type": "Point",
-                                "coordinates": [item.lon, item.lat]
-                            },
-                            "type": "Feature",
-                            "properties": {
-
-                                "timestamp": moment(item.timestamp.replace('T', ' ').replace('Z', '')).unix(),
-                                "version": item.version,
-                                "user": item.user
-                            }
-                        };
-                        geojson.features.push(d);
-
-                    });
-
-                    console.log(geojson);
-                    $('#map').removeClass('loading');
-                    $('#btn-full-with').trigger('click');
-
-                    createfile(geojson);
-
-
+                    geojson.features.push(d);
 
                 });
+                createfile(geojson);
 
-
-            } else {
-
-                alert("zoom in a little so we don't have to load a huge area from the API.")
-            }
+            });
 
 
         });
@@ -295,13 +281,9 @@
 
 
         function createfile(d) {
-
-
             var Base64 = {
-
                 // private property
                 _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
-
                 // public method for encoding
                 encode: function(input) {
                     var output = "";
@@ -427,22 +409,12 @@
 
             }
 
-
-
-            //var btn = document.getElementById("linkButton");
             var axx = document.getElementById("osm");
-            axx.download = 'osm.json';
-
-            // I used this online encoder to create the data url.
-            // axx.href = 'data:text/csv;base64,MTsyOzQ=';  // This was my first test, not having the encoder. 
+            axx.download = 'osm.geojson';
             axx.href = 'data:text/json;base64,' + Base64.encode(JSON.stringify(d));
+            $('.row').removeClass('loading');
+            
+            $('#osm').removeAttr('disabled');
         };
-
-        function getTimestamp(str) {
-            var d = str.match(/\d+/g); // extract date parts
-            return +new Date(d[0], d[1], d[2], d[3], d[4], d[5]).getTime(); // build Date object
-        };
-
-
 
     })();
