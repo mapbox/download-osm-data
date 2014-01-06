@@ -43,7 +43,6 @@
         });
 
 
-
         //ENABLE OR DISABLE DATE
         $("#select-date input[name='date']").click(function() {
             if ($('input:radio[name=date]:checked').val() == "spec-date") {
@@ -171,8 +170,6 @@
 
         });
 
-
-
         function download_ways(locations, newer, user, way_type) {
 
             var dir = "http://127.0.0.1:8111/";
@@ -197,8 +194,6 @@
             });
         };
 
-
-
         function download_nodes(locations, newer, user, from_type) {
 
 
@@ -221,12 +216,25 @@
         };
 
 
-
         $('#json').click(function() {
 
 
-            $('#btn-full-with').trigger('click');
+            //Tipo
+            var tipo = $('input:radio[name=tipo]:checked').val();
 
+            if (tipo == 'all-node') {
+                download_json_nodes();
+            } else if (tipo == 'highway') {
+
+                download_json_ways();
+
+            }
+        });
+
+
+
+        function download_json_nodes() {
+            $('#btn-full-with').trigger('click');
             //FECHA
             var date_hour = $('#datetimepicker input').attr('value');
             var date = date_hour.substring(0, 10).split("/");
@@ -274,10 +282,96 @@
                 createfile(geojson);
 
             });
+        };
 
 
-        });
 
+        function download_json_ways() {
+            $('#btn-full-with').trigger('click');
+            //FECHA
+            var date_hour = $('#datetimepicker input').attr('value');
+            var date = date_hour.substring(0, 10).split("/");
+            var hour = date_hour.substring(11, 19).split(":");
+            var newer = date[2] + "-" + date[0] + "-" + date[1] + "T" + date_hour.substring(11, 19) + "Z";
+
+            //console.log(newer);
+            var user = $('#imput_user').val();
+            //console.log(user)
+            var locations = (map.getExtent() + '').split(',');
+            //console.log(locations[2] + ',' + locations[1] + ',' + locations[0] + ',' + locations[3]);
+            var query = '[out:json];node(' + locations[2] + ',' + locations[1] + ',' + locations[0] + ',' + locations[3] + ');way(bn);way._  (newer:"' + newer + '") (user:"' + user + '") ["highway"];(._; >;);out meta;';
+
+
+            var url = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=' + query;
+            console.log(url)
+
+
+            $.ajax({
+                url: url,
+                success: function(data) {
+                    $("result").html(data);
+                    console.log(data);
+                }
+            }).done(function(data) {
+
+
+                var geojson = {
+                    "type": "FeatureCollection",
+                    "features": []
+                };
+                $.each(data.elements, function(i, item) {
+
+                    //console.log(item)
+                    if (item.type === "way") {
+                        //  console.log(item)
+                        var d = {
+                            "geometry": {
+                                "type": "LineString",
+                                "coordinates": []
+                            },
+                            "type": "Feature",
+                            "properties": {
+                                "timestamp": moment(item.timestamp.replace('T', ' ').replace('Z', '')).unix(),
+                                "version": item.version,
+                                "highway": item.tags.highway,
+                                "user": item.user
+                            }
+                        };
+
+                       /* _.find(item.nodes, function(id_nodes) {
+
+                            _.find(item.nodes, function(nodes) {
+                                return num % 2 == 0;
+
+                            });
+                        });*/
+
+                        console.log(item.nodes.length)
+
+                        console.log(item.nodes)
+
+
+                        // console.log(d);
+                        geojson.features.push(d);
+
+                    }
+
+
+                });
+
+
+
+                //console.log(data.elements);
+
+                /*for (var i = data.elements.length - 1; i >= 0; i--) {
+                    if (data.elements[i].type == 'way');
+                    console.log(data.elements[i]);
+                };
+*/
+                createfile(geojson);
+            });
+
+        };
 
 
         function createfile(d) {
@@ -413,7 +507,6 @@
             axx.download = 'osm.geojson';
             axx.href = 'data:text/json;base64,' + Base64.encode(JSON.stringify(d));
             $('.row').removeClass('loading');
-            
             $('#osm').removeAttr('disabled');
         };
 
