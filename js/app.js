@@ -261,6 +261,9 @@
                     "type": "FeatureCollection",
                     "features": []
                 };
+
+                var v1 = 0;
+                var vx = 0;
                 $.each(data.elements, function(i, item) {
                     // console.log(item)
                     var d = {
@@ -276,10 +279,20 @@
                             "user": item.user
                         }
                     };
+
+                    if (item.version === 1) {
+                        v1++;
+                    } else {
+                        vx++;
+                    }
+
+
                     geojson.features.push(d);
 
                 });
                 createfile(geojson);
+                $('#v1').text(v1);
+                $('#vx').text(vx);
 
             });
         };
@@ -338,7 +351,7 @@
                             }
                         };
 
-                       /* _.find(item.nodes, function(id_nodes) {
+                        /* _.find(item.nodes, function(id_nodes) {
 
                             _.find(item.nodes, function(nodes) {
                                 return num % 2 == 0;
