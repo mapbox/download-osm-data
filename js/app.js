@@ -227,7 +227,7 @@
 
             if (tipo == 'all-node') {
                 download_json_nodes();
-            } else /*if (tipo == 'highway') */{
+            } else /*if (tipo == 'highway') */ {
 
                 //download_json_ways();
                 alert('tenga paciencia , estamos implementando...')
@@ -529,26 +529,31 @@
             $('.row').removeClass('loading');
             $('#osm').removeAttr('disabled');
 
-            $('#view_map').attr( 'target', '_blank' );
-            $('#view_map').attr( 'href', 'map.html#'+JSON.stringify(d));
+            $('#view_map').attr('target', '_blank');
+            $('#view_map').attr('href', 'map.html#' + JSON.stringify(d));
 
-             console.log(map.getZoom())
-             console.log(map);
-             //url.substring(url.indexOf("#") + 1);
+            console.log(map.getZoom())
+         
+            var locations = (map.getExtent() + '').split(',');
+            var lat=(parseFloat(locations[2]) +  parseFloat(locations[0]))/2;
+            var lon=(parseFloat(locations[1]) + parseFloat(locations[3]))/2;
+
+            console.log(lat);
+            console.log(lon);
 
 
         };
 
 
-        $('#view_map').click(function(){
+        $('#view_map').click(function() {
             var axx = document.getElementById("osm");
-            var ancla_data= axx.href;
+            var ancla_data = axx.href;
 
 
 
             console.log(ancla_data);
 
-    
+
 
         });
 

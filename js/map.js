@@ -27,6 +27,7 @@ var myIcon_vx = L.icon({
 var map = L.mapbox.map('map', 'ruben.gnfifcn3')
 	.setView([34.75887, -77.35057], 18);
 
+map.legendControl.addLegend('<img src="https://dl.dropboxusercontent.com/u/43116811/osm/leyenda.png"></img>');
 
 
 // Set a custom icon on each marker based on feature properties
