@@ -33,10 +33,8 @@
 
     (function() {
 
-
+        var url_data='';
         $('#map').removeClass('loading');
-
-
         $('#datetimepicker').datetimepicker({
             format: 'MM/dd/yyyy hh:mm:ss',
             pick12HourFormat: true
@@ -256,6 +254,7 @@
 
             var url = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=' + query;
             console.log(url)
+            url_data=url;
             $.getJSON(url, {
                 format: "json"
             }).done(function(data) {
@@ -522,7 +521,7 @@
                 }
 
             }
-
+            /*
             var axx = document.getElementById("osm");
             axx.download = 'osm.geojson';
             axx.href = 'data:text/json;base64,' + Base64.encode(JSON.stringify(d));
@@ -530,18 +529,39 @@
             $('#osm').removeAttr('disabled');
 
             $('#view_map').attr('target', '_blank');
-            $('#view_map').attr('href', 'map.html#' + JSON.stringify(d));
+            $('#view_map').attr('href', 'map2.html#' + JSON.stringify(d));
 
-            console.log(map.getZoom())
-         
+            var zoom = map.getZoom();
+            var lat = (parseFloat(locations[2]) + parseFloat(locations[0])) / 2;
+            var lon = (parseFloat(locations[1]) + parseFloat(locations[3])) / 2;
+
+            //#14.00/34.2460/-77.8506
             var locations = (map.getExtent() + '').split(',');
-            var lat=(parseFloat(locations[2]) +  parseFloat(locations[0]))/2;
-            var lon=(parseFloat(locations[1]) + parseFloat(locations[3]))/2;
+
 
             console.log(lat);
-            console.log(lon);
+            console.log(lon);*/
 
 
+            var axx = document.getElementById("osm");
+            axx.download = 'osm.geojson';
+            axx.href = 'data:text/json;base64,' + Base64.encode(JSON.stringify(d));
+            $('.row').removeClass('loading');
+            $('#osm').removeAttr('disabled');
+
+
+
+            var zoom = map.getZoom();
+            var locations = (map.getExtent() + '').split(',');
+            var lat = (parseFloat(locations[2]) + parseFloat(locations[0])) / 2;
+            var lon = (parseFloat(locations[1]) + parseFloat(locations[3])) / 2;
+
+
+
+            $('#view_map').attr('target', '_blank');
+            $('#view_map').attr('href', 'map2.html#/' + zoom+'/'+lat+'/'+lon+'?'+url_data);
+
+            //#14.00/34.2460/-77.8506            
         };
 
 
