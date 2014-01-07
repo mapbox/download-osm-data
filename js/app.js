@@ -532,6 +532,10 @@
             $('#view_map').attr( 'target', '_blank' );
             $('#view_map').attr( 'href', 'map.html#'+JSON.stringify(d));
 
+             console.log(map.getZoom())
+             console.log(map);
+             //url.substring(url.indexOf("#") + 1);
+
 
         };
 
