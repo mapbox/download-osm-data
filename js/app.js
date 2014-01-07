@@ -196,7 +196,6 @@
 
         function download_nodes(locations, newer, user, from_type) {
 
-
             var dir = "http://127.0.0.1:8111/";
 
             var query = '<query type="node">' +
@@ -208,6 +207,8 @@
             console.log(query);
             $.get(dir + "import", {
                 url: 'http://overpass-api.de/api/interpreter?data=' + query
+
+
             }).error(function() {
                 alert("Error: Enable JOSM remote!")
             }).success(function() {
@@ -217,16 +218,19 @@
 
 
         $('#json').click(function() {
-
-
+            $('#v1').empty();
+            $('#vx').empty();
+            $('.row').addClass('loading');
+            $('#osm').attr("disabled", true);
             //Tipo
             var tipo = $('input:radio[name=tipo]:checked').val();
 
             if (tipo == 'all-node') {
                 download_json_nodes();
-            } else if (tipo == 'highway') {
+            } else /*if (tipo == 'highway') */{
 
-                download_json_ways();
+                //download_json_ways();
+                alert('tenga paciencia , estamos implementando...')
 
             }
         });
@@ -264,6 +268,7 @@
 
                 var v1 = 0;
                 var vx = 0;
+                console.log(data.elements.length)
                 $.each(data.elements, function(i, item) {
                     // console.log(item)
                     var d = {
@@ -280,7 +285,9 @@
                         }
                     };
 
-                    if (item.version === 1) {
+
+                    if (item.version == 1) {
+                        console.log(item.version)
                         v1++;
                     } else {
                         vx++;
@@ -521,6 +528,24 @@
             axx.href = 'data:text/json;base64,' + Base64.encode(JSON.stringify(d));
             $('.row').removeClass('loading');
             $('#osm').removeAttr('disabled');
+
+            $('#view_map').attr( 'target', '_blank' );
+            $('#view_map').attr( 'href', 'map.html#'+JSON.stringify(d));
+
+
         };
+
+
+        $('#view_map').click(function(){
+            var axx = document.getElementById("osm");
+            var ancla_data= axx.href;
+
+
+
+            console.log(ancla_data);
+
+    
+
+        });
 
     })();

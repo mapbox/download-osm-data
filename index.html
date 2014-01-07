@@ -35,7 +35,7 @@
                         </div>
                         <div class="span10">
                             <div id="datetimepicker" class="input-append">
-                                <input  class="imput-data" data-format="MM/dd/yyyy HH:mm:ss PP" type="text" placeholder='Date at:' id="imput_date"></input>
+                                <input  class="imput-data" data-format="MM/dd/yyyy HH:mm:ss PP" type="text" placeholder='Date at:' id="imput_date" value="01/05/2014 09:04:15"></input>
                                 <span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                                 </span>
                             </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="row-fluid">
                         <div class="span2">User :</div>
-                        <div class="span10"><input id= "imput_user" type="text"></input></div>
+                        <div class="span10"><input id= "imput_user" type="text" value="ediyes"></input></div>
                     </div>
                 </div>
                 
@@ -112,13 +112,16 @@
                     
                 </div>
                 <div class="row loading">
+                     <div class="span7">
+                        <div ><strong>Version=1 :</strong><span id="v1"></span></div>
+                        <div ><strong>Version>1 :</strong><span id="vx"></span></div>
+                    </div>
+
                     <div class="span7">
                         <a type="button" class="btn" id="osm" disabled="" >Dowland</a>
+                          <a type="button" class="btn btn-primary" id="view_map" href="#" >View on Map</a>
                     </div>
-                    <div class="span7">
-                        <div ><strong>Version=1 :</strong><span id="v1"></span>0</div>
-                        <div ><strong>Version>1 :</strong><span id="vx"></span>0</div>
-                    </div>
+                   
                     
                     
                 </div>
