@@ -27,7 +27,7 @@
 
         window.setTimeout(function() {
             $('#map').removeClass('loading');
-        }, 2000);
+        }, 500);
 
 
         var url_data = '';
@@ -148,8 +148,10 @@
 
                 //web site
                 // $('#btn-full-with').trigger('click');
+                 $('#osm_user').empty();
                 $('#v1').empty();
                 $('#vx').empty();
+                
 
                 $('#download_file').attr("disabled", true);
 
@@ -159,7 +161,7 @@
                 $('#close').show(200);
                 $('#progress_detail').css('display', 'block');
                 $('.progress_detail').addClass('loading');
-                
+
                 download_json_nodes(locations, newer, user);
 
             } else {

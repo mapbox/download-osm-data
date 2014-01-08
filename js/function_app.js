@@ -90,6 +90,7 @@ function download_json_nodes(locations, newer, user) {
         });
 
         //web site
+         $('#osm_user').text($('#imput_user').val());
         $('#v1').text(v1);
         $('#vx').text(vx);
 
