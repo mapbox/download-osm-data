@@ -159,7 +159,7 @@
                 $('#close').show(200);
                 $('#progress_detail').css('display', 'block');
                 $('.progress_detail').addClass('loading');
-
+                
                 download_json_nodes(locations, newer, user);
 
             } else {

@@ -11,10 +11,45 @@
   <style>
     body { margin:0; padding:0; }
     #map { position:absolute; top:0; bottom:0; width:100%; }
+
+.loading:after {
+    background: url(img/ajax-loader-rev.gif) no-repeat;
+    content: "Cargando...";
+    color: #666;
+    left: 50%;  
+    height: 16px;
+    line-height: 16px;
+    margin-top: -8px;
+    margin-left: -40px;
+    position: absolute;
+    font-size: 12px;
+    top: 50%; 
+    text-indent: 26px;
+    width: 80px;
+   /* background-color: #333;*/
+    background-color: rgba(0,0,0,0.75);
+     padding: 20px;
+        background-position: 20px 50%;
+    border-radius: 10px;
+
+    z-index: 4;
+}
+
+#map.loading:after {
+    
+
+    position: absolute;
+}
+
+
   </style>
 </head>
 <body>
-<div id='map'></div>
+<div id='map' class='loading'></div>
+     <div id="legend">
+            <span style='color:#FF0'>▉</span> Version = 1 <br />
+            <span style='color:#0F0'>▉</span> Version > 1
+        </div>
 <script>
 
 </script>

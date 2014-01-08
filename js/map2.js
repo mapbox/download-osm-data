@@ -1,9 +1,9 @@
 var url = document.URL;
-var url_data = url.substring(url.indexOf("?") + 1);
+var url_data = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=' + url.substring(url.indexOf("?") + 1);
 
-var cord=url.substring(url.indexOf("#")+2 ,url.indexOf("?") );
+var cord = url.substring(url.indexOf("#") + 2, url.indexOf("?"));
 
-cord=cord.split("/");
+cord = cord.split("/");
 
 //console.log(cord);
 
@@ -12,7 +12,7 @@ console.log(url_data);
 var map = L.mapbox.map('map', 'ruben.gnfifcn3')
 	.setView([cord[1], cord[2]], cord[0]);
 
-map.legendControl.addLegend('<img src="https://dl.dropboxusercontent.com/u/43116811/osm/leyenda.png"></img>');
+map.legendControl.addLegend(document.getElementById('legend').innerHTML);
 
 var geojson = {
 	"type": "FeatureCollection",
@@ -79,5 +79,6 @@ function map_marker() {
 	});
 
 	map.markerLayer.setGeoJSON(geojson);
+	$('#map').removeClass('loading');
 
 };

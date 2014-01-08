@@ -1,4 +1,5 @@
-var map_p_init = 0; //verifica si el mapa esya inicialixado.
+
+var url_data='';
 
 function download_ways(locations, newer, user, way_type) {
 
@@ -52,7 +53,7 @@ function download_json_nodes(locations, newer, user) {
     var query = '[out:json];node(newer:"' + newer + '")(user:"' + user + '")(' + locations[2] + ',' + locations[1] + ',' + locations[0] + ',' + locations[3] + ');out meta;';
     var url = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=' + query;
 
-    url_data = url;
+    url_data = query;
 
     $.getJSON(url, {
         format: "json"
@@ -98,7 +99,9 @@ function download_json_nodes(locations, newer, user) {
 };
 
 
+
 function maping_progress(geojson) {
+
 
     var zoom = map.getZoom();
     var locations = (map.getExtent() + '').split(',');
@@ -116,13 +119,7 @@ function maping_progress(geojson) {
 
     });
 
-   // if (map_p_init === 0) {
-        var map_p = L.mapbox.map('progress_map', 'ruben.gnfifcn3');
-       // map_p_init++;
- //   }
-
-
-
+    var map_p = L.mapbox.map('progress_map', 'ruben.gnfifcn3');
     map_p.setView([lat, lon], zoom);
 
     map_p.legendControl.addLegend(document.getElementById('legend').innerHTML);
