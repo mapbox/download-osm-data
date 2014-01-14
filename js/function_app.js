@@ -21,7 +21,7 @@ function download_ways(locations, newer, user, way_type) {
     }).error(function() {
         alert("Error: Enable JOSM remote!")
     }).success(function() {
-        e.dialog("close")
+       // e.dialog("close")
     });
 };
 
@@ -43,7 +43,7 @@ function download_nodes(locations, newer, user, from_type) {
     }).error(function() {
         alert("Error: Enable JOSM remote!")
     }).success(function() {
-        e.dialog("close")
+        //e.dialog("close")
     });
 };
 
