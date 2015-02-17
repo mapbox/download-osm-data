@@ -8,7 +8,7 @@
     }));
 
     map.addLayer(layer_osm);
-    map.addLayer(mapbox.layer().id('ruben.us-over'));
+    //map.addLayer(mapbox.layer().id('ruben.us-over'));
 
     map.setZoomRange(3, 18);
     map.centerzoom({
