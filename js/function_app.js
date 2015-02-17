@@ -46,6 +46,27 @@ function download_nodes(locations, newer, user, from_type) {
         //e.dialog("close")
     });
 };
+function download_hamlets(locations, newer, user, from_type) {
+
+    var dir = "http://127.0.0.1:8111/";
+
+    var query = '<query type="node"> <has-kv k="place" v="hamlet"/>' +
+        newer + user + from_type +
+        '<bbox-query s="' + locations[2] + '" n="' + locations[0] + '" w="' + locations[1] + '" e="' + locations[3] + '"/>' +
+        '</query>' +
+        '<print mode="meta"/>';
+
+    console.log(query);
+    $.get(dir + "import", {
+        url: 'http://overpass-api.de/api/interpreter?data=' + query
+
+
+    }).error(function() {
+        alert("Error: Enable JOSM remote!")
+    }).success(function() {
+        //e.dialog("close")
+    });
+};
 
 
 function download_json_nodes(locations, newer, user) {

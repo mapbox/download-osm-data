@@ -8,7 +8,7 @@
     }));
 
     map.addLayer(layer_osm);
-    //map.addLayer(mapbox.layer().id('ruben.us-over'));
+    map.addLayer(mapbox.layer().id('ruben.us-over'));
 
     map.setZoomRange(3, 18);
     map.centerzoom({
@@ -61,7 +61,7 @@
         $('#josm').click(function() {
             //MAP
             var mapzoom = map.getZoom();
-            if (mapzoom >= 6) {
+            if (mapzoom >= 2) {
                 var locations = (map.getExtent() + '').split(',');
                 //FECHA
                 var date_hour = $('#datetimepicker input').attr('value');
@@ -113,6 +113,12 @@
                     from_type = '';
 
                     download_nodes(locations, newer, user, from_type);
+
+
+
+                } else if (tipo == 'hamlets') {
+                    from_type = '';
+                    download_hamlets(locations, newer, user, from_type);
 
 
 
