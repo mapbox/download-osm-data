@@ -75,6 +75,7 @@ function download_json_nodes(locations, newer, user) {
     var url = 'http://overpass.osm.rambler.ru/cgi/interpreter?data=' + query;
 
     url_data = query;
+    console.log(url_data);
 
     $.getJSON(url, {
         format: "json"
