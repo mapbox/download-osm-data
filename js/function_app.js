@@ -69,6 +69,28 @@ function download_hamlets(locations, newer, user, from_type) {
 };
 
 
+function download_kanada_tamel_name(locations, newer, user, from_type) {
+
+    var dir = "http://127.0.0.1:8111/";
+
+    var query = '<query type="node"> <has-kv k="name:kn"/> <has-kv k="name:ta"/>' +
+        newer + user + from_type +
+        '<bbox-query s="' + locations[2] + '" n="' + locations[0] + '" w="' + locations[1] + '" e="' + locations[3] + '"/>' +
+        '</query>' +
+        '<print mode="meta"/>';
+
+    console.log(query);
+    $.get(dir + "import", {
+        url: 'http://overpass-api.de/api/interpreter?data=' + query
+
+
+    }).error(function() {
+        alert("Error: Enable JOSM remote!")
+    }).success(function() {
+        //e.dialog("close")
+    });
+};
+
 function download_json_nodes(locations, newer, user) {
 
     var query = '[out:json];node(newer:"' + newer + '")(user:"' + user + '")(' + locations[2] + ',' + locations[1] + ',' + locations[0] + ',' + locations[3] + ');out meta;';

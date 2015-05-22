@@ -123,6 +123,14 @@
 
 
                 }
+                else if (tipo == 'kanada') {
+                    from_type = '';
+                    download_kanada_tamel_name(locations, newer, user, from_type);
+
+
+
+                }
+
 
 
 

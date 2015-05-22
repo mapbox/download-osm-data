@@ -5,166 +5,170 @@
         <title>Download OSM Data</title>
         <link type='lib/mapbox_V0.6.6.css' />
         <link type='text/css' rel="stylesheet" href="css/bootstrap.css" >
-            
-            
-            <link href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-            <link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
-            <link  type='text/css' href='css/style.css' rel='stylesheet' />
-        </head>        
-        <body>            
-            <div id="map" class="loading">
-            </div>            
-            <div class="inf_sidebar"><a href="#">&nbsp</a></div>
-            <div class="sidebar">
-                <h4>Download OSM Data</h4>
-                <div class="content">
-                    
-                    <h5>Date:</h5>
-                    <div class="row-fluid" id="select-date">
-                        <div class="span1"><input type="radio" name="date" value="spec-date" id="spec-date" checked></div>
-                        <div class="span5"><label for="spec-date"> Spec date </label></div>
-                        <div class="span1"><input type="radio" name="date" value="all-date" id="all-date"></div>
-                        <div class="span5"><label for="all-date"> All date</label></div>
-                        
-                    </div>
-                    <div class="row-fluid set-spec-date">
-                        <div class="span2">
-                            From :
-                        </div>
-                        <div class="span10">
-                            <div id="datetimepicker" class="input-append">
-                                <input  class="imput-data" data-format="MM/dd/yyyy HH:mm:ss PP" type="text" placeholder='Date at:' id="imput_date"></input>
-                                <span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content">
-                    <h5>User:</h5>
-                    <div class="row-fluid" id="select-user">
-                        <div class="span1"><input type="radio" name="user" value="spec-user" id="spec-user" checked></div>
-                        <div class="span5"><label for="spec-user"> Spec user </label></div>
-                        <div class="span1"><input type="radio" name="user" value="all-user" id="all-user"></div>
-                        <div class="span5"><label for="all-user"> All user</label></div>
-                        
-                    </div>
-                    <div class="row-fluid">
-                        <div class="span2">User :</div>
-                        <div class="span10"><input id= "imput_user" type="text" ></input></div>
-                    </div>
-                </div>
-                
-                <div class="content opciones-check">
-                    <div class="well">
-                        <div class="well">
-                            <h5>Nodes</h5>                            
-                            <!--<div class="row-fluid">
-                                <div class="span1"><input type="radio" name="tipo" value="node-high" id="node-high" disabled=true></div>
-                                <div class="span11"><label for="node-high">Nodes from highways</label></div>
-                            </div>-->
-                            <div class="row-fluid">
-                                <div class="span1"><input type="radio" name="tipo" value="all-node" id="all-node"></div>
-                                <div class="span11"><label for="all-node"> all nodes</label></div>
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="well">
-                            <h5>Ways</h5>
-                            <div class="row-fluid">
-                                <div class="span1"><input type="radio" name="tipo" value="highway" id="highway"></div>
-                                <div class="span11"><label for="highway">highway</label></div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="span1"><input type="radio" name="tipo" value="buildings" id="buildings"></div>
-                                <div class="span11"><label for="buildings">buildings</label></div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="span1"><input type="radio" name="tipo" value="all-ways" id="all-ways"></div>
-                                <div class="span11"><label for="all-ways">all ways</label></div>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="span1"><input type="radio" name="tipo" value="hamlets" id="hamlets"></div>
-                                <div class="span11"><label for="hamlets">hamlets</label></div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <button type="button" data-dismiss="modal" class="btn btn-primary" id="josm">Download in JOSM</button>
-                <button type="button" data-dismiss="modal" class="btn btn-primary" id="json">Download JSON</button>
-             
-                
-            </div>
-        </div>
         
         
-        <div id="popover" class="modal hide fade" tabindex="-1" data-width="760">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4>Dowland Data</h4>
-            </div>
-            <div class="modal-body">
-              <!--  <div class="row loading">
-                    <div class="span7">
-                        
-                    </div>
-                    
-                </div>-->
-                <!--<div class="row loading">
-                    <div class="span7">
-                        <div ><strong>Version=1 :</strong><span id="v1"></span></div>
-                        <div ><strong>Version>1 :</strong><span id="vx"></span></div>
-                    </div>
-                    <div class="span7">
-                        <a type="button" class="btn" id="osm" disabled="" >Dowland</a>
-                        <a type="button" class="btn btn-primary" id="view_map" href="#" >View on Map</a>
-                    </div>   
-                </div>-->
-            </div>
+        <link href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
+        <link  type='text/css' href='css/style.css' rel='stylesheet' />
+    </head>
+    <body>
+        <div id="map" class="loading">
         </div>
-        
-        <a href="#popover" id="btn-full-with"  class="pull-right" data-toggle="modal"></a>
-        <div id='backdrop'>
-        </div>
-        <div id='progress_map' class='sig_popover loading'>
-        </div>
-        <a id='close'  style="cursor: pointer;">✕</a>
-        <div id="progress_detail">
+        <div class="inf_sidebar"><a href="#">&nbsp</a></div>
+        <div class="sidebar">
+            <h4>Download OSM Data</h4>
             <div class="content">
-                <div class="row ">
-                    <div class="span7">
-                        <div>User: <span id="osm_user"></span></div>
-                        <div ><strong>Version=1 :</strong><span id="v1"></span>  |
-                            <strong>Version>1 :</strong><span id="vx"></span>
-                        </div>
-                        </div>
-                        <div class="span7">
-                            <a type="button" class="btn" id="download_file" disabled="" >Dowland Geojson</a>
-                            <a type="button" class="btn btn-primary" id="view_map" disabled="" >Share my progress</a>
-                        </div>
+                
+                <h5>Date:</h5>
+                <div class="row-fluid" id="select-date">
+                    <div class="span1"><input type="radio" name="date" value="spec-date" id="spec-date" checked></div>
+                    <div class="span5"><label for="spec-date"> Spec date </label></div>
+                    <div class="span1"><input type="radio" name="date" value="all-date" id="all-date"></div>
+                    <div class="span5"><label for="all-date"> All date</label></div>
                     
                 </div>
+                <div class="row-fluid set-spec-date">
+                    <div class="span2">
+                        From :
+                    </div>
+                    <div class="span10">
+                        <div id="datetimepicker" class="input-append">
+                            <input  class="imput-data" data-format="MM/dd/yyyy HH:mm:ss PP" type="text" placeholder='Date at:' id="imput_date"></input>
+                            <span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="content">
+                <h5>User:</h5>
+                <div class="row-fluid" id="select-user">
+                    <div class="span1"><input type="radio" name="user" value="spec-user" id="spec-user" checked></div>
+                    <div class="span5"><label for="spec-user"> Spec user </label></div>
+                    <div class="span1"><input type="radio" name="user" value="all-user" id="all-user"></div>
+                    <div class="span5"><label for="all-user"> All user</label></div>
+                    
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">User :</div>
+                    <div class="span10"><input id= "imput_user" type="text" ></input></div>
+                </div>
+            </div>
+            
+            <div class="content opciones-check">
+                <div class="well">
+                    <div class="well">
+                        <h5>Nodes</h5>
+                        <!--<div class="row-fluid">
+                            <div class="span1"><input type="radio" name="tipo" value="node-high" id="node-high" disabled=true></div>
+                            <div class="span11"><label for="node-high">Nodes from highways</label></div>
+                        </div>-->
+                        <div class="row-fluid">
+                            <div class="span1"><input type="radio" name="tipo" value="all-node" id="all-node"></div>
+                            <div class="span11"><label for="all-node"> all nodes</label></div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="well">
+                        <h5>Ways</h5>
+                        <div class="row-fluid">
+                            <div class="span1"><input type="radio" name="tipo" value="highway" id="highway"></div>
+                            <div class="span11"><label for="highway">highway</label></div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span1"><input type="radio" name="tipo" value="buildings" id="buildings"></div>
+                            <div class="span11"><label for="buildings">buildings</label></div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span1"><input type="radio" name="tipo" value="all-ways" id="all-ways"></div>
+                            <div class="span11"><label for="all-ways">all ways</label></div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span1"><input type="radio" name="tipo" value="hamlets" id="hamlets"></div>
+                            <div class="span11"><label for="hamlets">hamlets</label></div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span1"><input type="radio" name="tipo" value="kanada" id="kanada"></div>
+                            <div class="span11"><label for="kanada">Kanada-Tamil</label></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <button type="button" data-dismiss="modal" class="btn btn-primary" id="josm">Download in JOSM</button>
+            <button type="button" data-dismiss="modal" class="btn btn-primary" id="json">Download JSON</button>
+            
+            
         </div>
-        <div id="legend">
-            <span style='color:#FF0'>▉</span> Version = 1 <br />
-            <span style='color:#0F0'>▉</span> Version > 1
+    </div>
+    
+    
+    <div id="popover" class="modal hide fade" tabindex="-1" data-width="760">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4>Dowland Data</h4>
         </div>
-        <!--Librerias-->
-        <script src='lib/mapbox_V0.6.6.js'></script>
-        <script src="lib/jquery.min.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="lib/moment.min.js"></script>
-        <script src="lib/bootstrap-datetimepicker.min.js"></script>
-        <script src="lib/bootstrap-datetimepicker.pt-BR.js"></script>
-        <script src="lib/underscore.min"></script>
-         <script src='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
-        <script src="js/function_app.js"></script>
-        <script src="js/app.js"></script>
-       
-        
-    </body>
+        <div class="modal-body">
+            <!--  <div class="row loading">
+                <div class="span7">
+                    
+                </div>
+                
+            </div>-->
+            <!--<div class="row loading">
+                <div class="span7">
+                    <div ><strong>Version=1 :</strong><span id="v1"></span></div>
+                    <div ><strong>Version>1 :</strong><span id="vx"></span></div>
+                </div>
+                <div class="span7">
+                    <a type="button" class="btn" id="osm" disabled="" >Dowland</a>
+                    <a type="button" class="btn btn-primary" id="view_map" href="#" >View on Map</a>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    
+    <a href="#popover" id="btn-full-with"  class="pull-right" data-toggle="modal"></a>
+    <div id='backdrop'>
+    </div>
+    <div id='progress_map' class='sig_popover loading'>
+    </div>
+    <a id='close'  style="cursor: pointer;">✕</a>
+    <div id="progress_detail">
+        <div class="content">
+            <div class="row ">
+                <div class="span7">
+                    <div>User: <span id="osm_user"></span></div>
+                    <div ><strong>Version=1 :</strong><span id="v1"></span>  |
+                    <strong>Version>1 :</strong><span id="vx"></span>
+                </div>
+            </div>
+            <div class="span7">
+                <a type="button" class="btn" id="download_file" disabled="" >Dowland Geojson</a>
+                <a type="button" class="btn btn-primary" id="view_map" disabled="" >Share my progress</a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div id="legend">
+    <span style='color:#FF0'>▉</span> Version = 1 <br />
+    <span style='color:#0F0'>▉</span> Version > 1
+</div>
+<!--Librerias-->
+<script src='lib/mapbox_V0.6.6.js'></script>
+<script src="lib/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="lib/moment.min.js"></script>
+<script src="lib/bootstrap-datetimepicker.min.js"></script>
+<script src="lib/bootstrap-datetimepicker.pt-BR.js"></script>
+<script src="lib/underscore.min"></script>
+<script src='http://api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
+<script src="js/function_app.js"></script>
+<script src="js/app.js"></script>
+
+
+</body>
 </html>
