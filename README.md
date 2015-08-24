@@ -1,4 +1,4 @@
-Extract data from OSM.
+Extract data from OSM
 ---
 
 Use this tool to extract data from OSM. Data is extracted using overpass queries
